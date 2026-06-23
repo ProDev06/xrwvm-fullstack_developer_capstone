@@ -66,7 +66,7 @@ def logout_request(request):
     # Logout user in the request
     logout(request)
     # Redirect user back to course list view
-    return redirect('onlinecourse:popular_course_list')
+    return JsonResponse({"userName":""})
 
 
 # Create a `registration` view to handle sign up request
