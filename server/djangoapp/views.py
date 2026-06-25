@@ -35,6 +35,7 @@ def get_cars(request):
         })
     return JsonResponse({"CarModels": cars})
 
+
 def login_request(request):
     # Handles POST request
     if request.method == "POST":
@@ -51,6 +52,7 @@ def login_request(request):
             # If not, return to login page again
             return redirect('djangoapp:login_user')
 
+
 @csrf_exempt
 def login_user(request):
     # Get username and password from request.POST dictionary
@@ -66,15 +68,15 @@ def login_user(request):
         data = {"userName": username, "status": "Authenticated"}
     return JsonResponse(data)
 
+
 def logout_request(request):
     print("Log out the user `{}`".format(request.user.username))
     logout(request)
     return JsonResponse({"userName": ""})
 
+
 @csrf_exempt
 def registration(request):
-    context = {}
-
 	# Load JSON data from the request body
     data = json.loads(request.body)
     username = data['userName']
