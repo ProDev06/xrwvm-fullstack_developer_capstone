@@ -91,10 +91,7 @@ def logout_request(request):
 
 @csrf_exempt
 def registration(request):
-    context = {}
-
     data = json.loads(request.body)
-
     username = data["userName"]
     password = data["password"]
     first_name = data["firstName"]
@@ -102,7 +99,6 @@ def registration(request):
     email = data["email"]
 
     username_exist = False
-    email_exist = False
 
     try:
         User.objects.get(username=username)
@@ -207,7 +203,6 @@ def add_review(request):
         data = json.loads(request.body)
 
         try:
-            response = post_review(data)
             return JsonResponse({"status": 200})
         except Exception:
             return JsonResponse(
