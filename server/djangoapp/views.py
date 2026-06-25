@@ -20,6 +20,7 @@ from .restapis import get_request, analyze_review_sentiments
 # Get an instance of a logger
 logger = logging.getLogger(__name__)
 
+
 def get_cars(request):
     count = CarMake.objects.filter().count()
     print(count)
@@ -29,9 +30,9 @@ def get_cars(request):
     cars = []
     for car_model in car_models:
         cars.append({
-			"CarModel": car_model.name,
-			"CarMake": car_model.car_make.name
-		})
+            "CarModel": car_model.name,
+            "CarMake": car_model.car_make.name
+        })
     return JsonResponse({"CarModels": cars})
 
 def login_request(request):
