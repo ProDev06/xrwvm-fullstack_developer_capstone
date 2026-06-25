@@ -1,12 +1,12 @@
 # Uncomment the required imports before adding the code
 
 # from django.shortcuts import render
-from django.http import HttpResponseRedirect, HttpResponse
+# from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth.models import User
 from django.shortcuts import redirect
 from django.contrib.auth import logout
-from django.contrib import messages
-from datetime import datetime
+# from django.contrib import messages
+# from datetime import datetime
 
 from django.http import JsonResponse
 from django.contrib.auth import login, authenticate
@@ -15,7 +15,7 @@ import json
 from django.views.decorators.csrf import csrf_exempt
 from .populate import initiate
 from .models import CarMake, CarModel
-from .restapis import get_request, analyze_review_sentiments
+from .restapis import get_request, analyze_review_sentiments, post_review
 
 # Get an instance of a logger
 logger = logging.getLogger(__name__)
@@ -85,7 +85,7 @@ def registration(request):
     last_name = data['lastName']
     email = data['email']
     username_exist = False
-    email_exist = False
+    # email_exist = False
     try:
         # Check if user already exists
         User.objects.get(username=username)
@@ -147,7 +147,7 @@ def add_review(request):
     if (request.user.is_anonymous == False):
         data = json.loads(request.body)
         try:
-            response = post_review(data)
+            post_review(data)
             return JsonResponse({"status": 200})
         except BaseException:
             return JsonResponse(
